@@ -12,7 +12,7 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 api = Api(app)
-hwt = JWTManager(app)
+jwt = JWTManager(app)
 
 from resources.users import bp as user_bp
 api.register_blueprint(user_bp)
