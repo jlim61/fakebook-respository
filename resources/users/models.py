@@ -1,6 +1,9 @@
-from app import db
-
 from werkzeug.security import generate_password_hash, check_password_hash
+
+from app import db
+from flask_login import UserMixin
+from app import login
+
 
 # class FollowersModel(db.Model):
 
@@ -15,7 +18,11 @@ followers = db.Table('followers',
     db.Column('followed_id', db.Integer, db.ForeignKey('users.id'))    
 )
 
-class UserModel(db.Model):
+@login.user_loader
+def load_user(id):
+  return UserModel.query.get(id)
+
+class UserModel(UserMixin, db.Model):
 
     __tablename__ = 'users'
 

@@ -1,0 +1,18 @@
+{% extends "base.jinja" %}
+
+{% block content %}
+
+<form action="/user/login" method="POST">
+  {{ form.hidden_tag() }} {# keeps a hacker from submitting data that can delete user #}
+  <p>
+    {{ form.usernameOrEmail.label }}<br>
+    {{ form.usernameOrEmail(size=32) }}
+  </p>
+  <p>
+    {{ form.password.label }}<br>
+    {{ form.password(size=32) }}
+  </p>
+  <p>{{ form.submit() }}</p>
+</form>
+
+{% endblock content %}
